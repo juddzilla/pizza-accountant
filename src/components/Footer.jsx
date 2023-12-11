@@ -33,7 +33,7 @@ export function Footer() {
                 <p className="mt-1 text-sm">Invest at the perfect time.</p>
               </div>
             </div>
-            <nav className="mt-11 flex gap-8">
+            <nav className="mt-11 flex flex-wrap gap-8">
               <NavLinks />
             </nav>
           </div>

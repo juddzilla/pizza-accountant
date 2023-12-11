@@ -1,7 +1,9 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { CircleBackground } from '@/components/CircleBackground'
-import { Container } from '@/components/Container'
+import { useEffect, useState } from 'react';
+
+import { CircleBackground } from '@/components/CircleBackground';
+import { Container } from '@/components/Container';
+import { Area, Per } from '@/components/calculator/Charts';
 import Currencies from '@/components/calculator/Currencies';
 import PizzaBox from '@/components/calculator/PizzaBox';
 import Units from '@/components/calculator/Units';
@@ -36,7 +38,7 @@ export default () => {
     } else {
       results.pizzas[pizza.id] = {
         area: pizza.area,
-        per: pizza.per * 100,
+        per: pizza.per,
       }
     }
 
@@ -44,13 +46,13 @@ export default () => {
 
     const sortedRanking = Object.keys(newResults)
         .map(key => ({
-          pizza: key,
-          value: newResults[key],
+          pizza: parseInt(key, 10),
+          ...newResults[key],
         }))
         .sort((a, b) => {
-          if (a.value.per < b.value.per) {
+          if (a.per < b.per) {
             return -1;
-          } else if (a.value.per > b.value.per) {
+          } else if (a.per > b.per) {
             return + 1;
           }
           return 0;
@@ -63,21 +65,23 @@ export default () => {
         return [];
       }
 
-      const current = r.value.per;
+      const current = r.per;
       const comparison = {};
 
       if (a[i + 1]) {
-        comparison.next = (1 / (a[i + 1].value.per / current)) * 100;
+        comparison.next = (1 / (a[i + 1].per / current)) * 100;
       }
 
       if (a[i - 1]) {
-        comparison.previous = (1 / (a[i - 1].value.per / current)) * 100;
+        comparison.previous = (1 / (a[i - 1].per / current)) * 100;
       }
       return { comparison, ...r };
     })
 
     setResults({ pizzas: { ...newResults }, ranking });
   }
+
+  const pizzaBox = 'mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-10 sm:mt-8 lg:max-w-none lg:grid-cols-3';
 
   return (
       <>
@@ -99,10 +103,10 @@ export default () => {
         <section
             id="calculator"
             aria-labelledby="pricing-title"
-            className="border-t border-gray-200 bg-gray-100 py-20 sm:py-32"
+            className="border-t border-gray-200 py-20 sm:py-32"
         >
-          <Container>
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Container className='px-0'>
+            <div className="mx-auto max-w-7xl">
               <div className='mx-auto max-w-2xl text-center'>
                 <h2
                     id="pricing-title"
@@ -118,7 +122,7 @@ export default () => {
               </div>
             </div>
 
-            <div className='mx-auto max-w-xl text-center mt-8 flex justify-center'>
+            <div className='mx-auto max-w-xl text-center mt-8 md:flex justify-center sm:px-6 lg:px-8'>
               <div className="">
                 { Currencies(currency, setCurrency) }
               </div>
@@ -128,12 +132,12 @@ export default () => {
             </div>
 
             <div className="flex justify-center">
-              <div className="relative">
-
-                <div className='mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-10 sm:mt-8 lg:max-w-none lg:grid-cols-3'>
+              <div className="relative px-4 sm:px-6 lg:px-8">
+                <div className='mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-4 sm:mt-8 lg:max-w-none lg:grid-cols-3 mb-8'>
                   { pizzas.map((pizza, index) => {
                     const data = {
                       currency,
+                      index,
                       option: pizza,
                       unit,
                       update: updatePizza,
@@ -147,6 +151,27 @@ export default () => {
                 </div>
               </div>
             </div>
+            { true &&
+              <div className="flex justify-center">
+                <div className="relative bg-black text-white w-full">
+                  <div className={ pizzaBox }>
+                    <div className='pt-4 mx-4 overflow-hidden rounded'>
+                      <div className='flex flex-col overflow-hidden sm:w-64 '>
+                        { Area(results.ranking) }
+                      </div>
+                    </div>
+                    <div className='pt-4  mx-4 overflow-hidden rounded'>
+                      <div className='flex flex-col sm:w-64 '>
+                        { Per(results.ranking) }
+                      </div>
+                    </div>
+                    <div className='pt-4  mx-4 overflow-hidden rounded'>
+                      <div className='flex flex-col sm:w-64 h-64'>ddsddsdsd</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
           </Container>
         </section>
       </>

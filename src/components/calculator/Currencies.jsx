@@ -1098,8 +1098,8 @@ export default function(value, update) {
 
   return (
       <>
-            <div className="sm:hidden">
-                  <select defaultValue={ value.code } className="form-select" id="currency" name="currency" onChange={ onChange }>
+            <div className="sm:hidden mb-4">
+                  <select defaultValue={ value.code } className="form-select w-64 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500" id="currency" name="currency" onChange={ onChange }>
                         {
                               currencies.map(currency => (
                                   <option value={ currency.code } key={ currency.code }>{ currency.name } - { currency.symbolNative }</option>
@@ -1107,7 +1107,7 @@ export default function(value, update) {
                         }
                   </select>
             </div>
-            <div className="hidden sm:block mr-4">
+            <div className="hidden sm:inline-block md:mr-4 sm:mb-2">
                   <Listbox value={ value.code } onChange={ onSelect }>
                         {({ open }) => (
                             <>
