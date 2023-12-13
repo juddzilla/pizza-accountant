@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { CircleBackground } from '@/components/CircleBackground';
 import { Container } from '@/components/Container';
-import { Area, Per } from '@/components/calculator/Charts';
+import { Area, Per, Tastiness } from '@/components/calculator/Charts';
 import Currencies from '@/components/calculator/Currencies';
 import PizzaBox from '@/components/calculator/PizzaBox';
 import Units from '@/components/calculator/Units';
@@ -81,7 +81,8 @@ export default () => {
     setResults({ pizzas: { ...newResults }, ranking });
   }
 
-  const pizzaBox = 'mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-10 sm:mt-8 lg:max-w-none lg:grid-cols-3';
+  const pizzaBox = 'mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-10 mt-4 sm:mt-6 lg:max-w-none lg:grid-cols-3';
+  const resultBox = 'bg-neutral-800 overflow-hidden rounded-lg p-4 shadow-2xl';
 
   return (
       <>
@@ -94,7 +95,7 @@ export default () => {
           </div>
           <Container className="relative">
             <div className="mx-auto max-w-md sm:text-center">
-              <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">
+              <h2 className="text-3xl font-medium text-center tracking-tight text-white sm:text-4xl">
                 Cost Benefit Analyzer
               </h2>
             </div>
@@ -122,7 +123,7 @@ export default () => {
               </div>
             </div>
 
-            <div className='mx-auto max-w-xl text-center mt-8 md:flex justify-center sm:px-6 lg:px-8'>
+            <div className='mx-auto max-w-xl text-center my-8 md:flex justify-center sm:px-6 lg:px-8'>
               <div className="">
                 { Currencies(currency, setCurrency) }
               </div>
@@ -133,7 +134,7 @@ export default () => {
 
             <div className="flex justify-center">
               <div className="relative px-4 sm:px-6 lg:px-8">
-                <div className='mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-4 sm:mt-8 lg:max-w-none lg:grid-cols-3 mb-8'>
+                <div className='mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-4 lg:max-w-none lg:grid-cols-3'>
                   { pizzas.map((pizza, index) => {
                     const data = {
                       currency,
@@ -143,7 +144,7 @@ export default () => {
                       update: updatePizza,
                     };
                     return (
-                        <div key={index}>
+                        <div key={index} className='mb-6 md:mb-0'>
                           { PizzaBox(data, results) }
                         </div>
                     )
@@ -151,22 +152,24 @@ export default () => {
                 </div>
               </div>
             </div>
-            { true &&
+            { results.ranking.length > 1 &&
               <div className="flex justify-center">
-                <div className="relative bg-black text-white w-full">
+                <div className="lg:px-8 px-4 relative text-white">
                   <div className={ pizzaBox }>
-                    <div className='pt-4 mx-4 overflow-hidden rounded'>
-                      <div className='flex flex-col overflow-hidden sm:w-64 '>
-                        { Area(results.ranking) }
+                    <div className={ resultBox }>
+                      <div className='bg-white flex p-4 flex-col overflow-hidden sm:w-64 h-64 relative'>
+                        { Area(results.ranking, currency, unit) }
                       </div>
                     </div>
-                    <div className='pt-4  mx-4 overflow-hidden rounded'>
-                      <div className='flex flex-col sm:w-64 '>
-                        { Per(results.ranking) }
+                    <div className={ resultBox }>
+                      <div className='bg-white p-4 flex flex-col overflow-hidden sm:w-64 h-64 relative'>
+                        { Per(results.ranking, currency, unit) }
                       </div>
                     </div>
-                    <div className='pt-4  mx-4 overflow-hidden rounded'>
-                      <div className='flex flex-col sm:w-64 h-64'>ddsddsdsd</div>
+                    <div className={ resultBox }>
+                      <div className='bg-white p-4 flex flex-col overflow-hidden sm:w-64 h-64 relative'>
+                        { Tastiness() }
+                      </div>
                     </div>
                   </div>
                 </div>

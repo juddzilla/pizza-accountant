@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-import { RadioGroup } from '@headlessui/react'
-import clsx from 'clsx'
+import { useState } from 'react';
+import { RadioGroup } from '@headlessui/react';
+import clsx from 'clsx';
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Logomark } from '@/components/Logo'
+import { Button } from '@/components/Button';
+import { Container } from '@/components/Container';
+import { Logo } from '@/components/Logo';
 
 const plans = [
   {
@@ -112,7 +112,7 @@ function Plan({
           featured ? 'text-white' : 'text-gray-900',
         )}
       >
-        <Logomark className={clsx('h-6 w-6 flex-none', logomarkClassName)} />
+        <Logo className={clsx('h-6 w-6 flex-none', logomarkClassName)} />
         <span className="ml-4">{name}</span>
       </h3>
       <p
@@ -171,7 +171,7 @@ function Plan({
               <CheckIcon
                 className={clsx(
                   'h-6 w-6 flex-none',
-                  featured ? 'text-white' : 'text-cyan-500',
+                  featured ? 'text-white' : 'text-option-1',
                 )}
               />
               <span className="ml-4">{feature}</span>
@@ -181,7 +181,7 @@ function Plan({
       </div>
       <Button
         href={button.href}
-        color={featured ? 'cyan' : 'gray'}
+        color={featured ? 'option-1' : 'gray'}
         className="mt-6"
         aria-label={`Get started with the ${name} plan for ${price}`}
       >
@@ -238,7 +238,7 @@ export function Pricing() {
             <div
               aria-hidden="true"
               className={clsx(
-                'pointer-events-none absolute inset-0 z-10 grid grid-cols-2 overflow-hidden rounded-lg bg-cyan-500 transition-all duration-300',
+                'pointer-events-none absolute inset-0 z-10 grid grid-cols-2 overflow-hidden rounded-lg bg-option-1 transition-all duration-300',
                 activePeriod === 'Monthly'
                   ? '[clip-path:inset(0_50%_0_0)]'
                   : '[clip-path:inset(0_0_0_calc(50%-1px))]',

@@ -108,12 +108,7 @@ export function Header() {
                               Pricing
                             </MobileNavLink>
                             <MobileNavLink href="/#faqs">FAQs</MobileNavLink>
-                          </div>
-                          <div className="mt-8 flex flex-col gap-4">
-                            <Button href="/login" variant="outline">
-                              Log in
-                            </Button>
-                            <Button href="#">Download the app</Button>
+                            <MobileNavLink href="/calculator">Calculator</MobileNavLink>
                           </div>
                         </Popover.Panel>
                       </>

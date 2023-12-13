@@ -36,6 +36,11 @@ module.exports = {
       },
       colors: ({ colors }) => ({
         gray: colors.neutral,
+        ivory: '#FFFFEF',
+        'option-1': '#e64001',
+        'option-2': '#fff',
+        'option-3': 'rgb(250 250 250)',
+
       }),
       fontFamily: {
         sans: 'var(--font-inter)',
@@ -66,4 +71,7 @@ module.exports = {
     },
   },
   plugins: [formsPlugin, headlessuiPlugin],
+  safelist: [{
+    pattern: /(bg|text|border|fill)-(option|ivory)-(1|2|3)/
+  }],
 }

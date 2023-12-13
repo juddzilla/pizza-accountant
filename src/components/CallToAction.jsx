@@ -1,6 +1,5 @@
-import { AppStoreLink } from '@/components/AppStoreLink'
-import { CircleBackground } from '@/components/CircleBackground'
-import { Container } from '@/components/Container'
+import { CircleBackground } from '@/components/CircleBackground';
+import { Container } from '@/components/Container';
 
 export function CallToAction() {
   return (
@@ -31,11 +30,6 @@ export function CallToAction() {
           <p className="mt-4 text-lg text-gray-300">
             Do it! Go on then.
           </p>
-
-
-          <div className="mt-8 flex justify-center">
-            <AppStoreLink color="white" />
-          </div>
         </div>
       </Container>
     </section>

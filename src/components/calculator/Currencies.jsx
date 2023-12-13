@@ -1099,7 +1099,7 @@ export default function(value, update) {
   return (
       <>
             <div className="sm:hidden mb-4">
-                  <select defaultValue={ value.code } className="form-select w-64 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500" id="currency" name="currency" onChange={ onChange }>
+                  <select value={ value.code } className="form-select w-64 rounded-md border-gray-300 focus:border-neutral-800 focus:ring-neutral-800" id="currency" name="currency" onChange={ onChange }>
                         {
                               currencies.map(currency => (
                                   <option value={ currency.code } key={ currency.code }>{ currency.name } - { currency.symbolNative }</option>
@@ -1112,7 +1112,7 @@ export default function(value, update) {
                         {({ open }) => (
                             <>
                                   <div className="relative w-64">
-                                        <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 sm:text-sm sm:leading-6">
                                               <span className="block truncate">{ value.name } - { value.symbol }</span>
                                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -1132,8 +1132,8 @@ export default function(value, update) {
                                                             key={ currency.code }
                                                             className={({ active }) =>
                                                                 classNames(
-                                                                    currency.code === value.code ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                                    'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                                    currency.code === value.code ? 'bg-neutral-800 text-white' : 'text-gray-900',
+                                                                    'relative cursor-default select-none py-2 pl-3 pr-9 hover:bg-neutral-800 hover:text-white'
                                                                 )
                                                             }
                                                             value={ currency }
@@ -1147,7 +1147,7 @@ export default function(value, update) {
                                                                         {selected ? (
                                                                             <span
                                                                                 className={classNames(
-                                                                                    active ? 'text-white' : 'text-indigo-600',
+                                                                                    active ? 'text-white' : 'text-neutral-800',
                                                                                     'absolute inset-y-0 right-0 flex items-center pr-4'
                                                                                 )}
                                                                             >

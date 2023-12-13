@@ -1,28 +1,18 @@
 'use client'
 
-import { Fragment, useEffect, useId, useRef, useState } from 'react'
-import { Tab } from '@headlessui/react'
-import clsx from 'clsx'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useDebouncedCallback } from 'use-debounce'
+import { Fragment, useEffect, useId, useRef, useState } from 'react';
+import { Tab } from '@headlessui/react';
+import clsx from 'clsx';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useDebouncedCallback } from 'use-debounce';
 
-import { AppScreen } from '@/components/AppScreen'
-import { CircleBackground } from '@/components/CircleBackground'
-import { Container } from '@/components/Container'
-import { PhoneFrame } from '@/components/PhoneFrame'
-import {
-  DiageoLogo,
-  LaravelLogo,
-  MirageLogo,
-  ReversableLogo,
-  StatamicLogo,
-  StaticKitLogo,
-  TransistorLogo,
-  TupleLogo,
-} from '@/components/StockLogos'
+import { AppScreen } from '@/components/AppScreen';
+import { CircleBackground } from '@/components/CircleBackground';
+import { Container } from '@/components/Container';
+import { PhoneFrame } from '@/components/PhoneFrame';
 
-const MotionAppScreenHeader = motion(AppScreen.Header)
-const MotionAppScreenBody = motion(AppScreen.Body)
+const MotionAppScreenHeader = motion(AppScreen.Header);
+const MotionAppScreenBody = motion(AppScreen.Body);
 
 const features = [
   {
@@ -33,20 +23,18 @@ const features = [
     screen: InviteScreen,
   },
   {
-    name: 'Real Time',
-    description:
-      'Real Talk',
+    name: 'Real Talk',
+    description: 'Real Time',
     icon: DeviceNotificationIcon,
     screen: StocksScreen,
   },
   {
-    name: 'It is what it is',
-    description:
-      "And sometimes it isn't.  And sometimes it never was.  But maybe someday, it never will not be.",
+    name: 'Dispense with the chicanery',
+    description: 'It is what it is',
     icon: DeviceTouchIcon,
     screen: InvestScreen,
   },
-]
+];
 
 function DeviceUserIcon(props) {
   return (
@@ -130,9 +118,9 @@ const headerAnimation = {
   initial: { opacity: 0, transition: { duration: 0.3 } },
   animate: { opacity: 1, transition: { duration: 0.3, delay: 0.3 } },
   exit: { opacity: 0, transition: { duration: 0.3 } },
-}
+};
 
-const maxZIndex = 2147483647
+const maxZIndex = 2147483647;
 
 const bodyVariantBackwards = {
   opacity: 0.4,
@@ -140,7 +128,7 @@ const bodyVariantBackwards = {
   zIndex: 0,
   filter: 'blur(4px)',
   transition: { duration: 0.4 },
-}
+};
 
 const bodyVariantForwards = (custom) => ({
   y: '100%',
@@ -173,13 +161,31 @@ const bodyAnimation = {
 }
 
 function InviteScreen(props) {
+  let [copying, setCopying] = useState(false);
+
+  useEffect(() => {
+    if (copying) {
+      setTimeout(() => {
+        setCopying(false);
+      }, 1000);
+    }
+  }, [copying]);
+
+  async function toClipboard() {
+    try {
+      setCopying(true);
+      await navigator.clipboard.writeText('https://pizza.accountant');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  }
+
   return (
     <AppScreen className="w-full">
       <MotionAppScreenHeader {...(props.animated ? headerAnimation : {})}>
-        <AppScreen.Title>Invite people</AppScreen.Title>
+        <AppScreen.Title>Pizza is meant to share</AppScreen.Title>
         <AppScreen.Subtitle>
-          Get tips <span className="text-white">5s sooner</span> for every
-          invite.
+          Sometimes. Buy an XL or larger pizza, and it's shareable!
         </AppScreen.Subtitle>
       </MotionAppScreenHeader>
       <MotionAppScreenBody
@@ -188,8 +194,8 @@ function InviteScreen(props) {
         <div className="px-4 py-6">
           <div className="space-y-6">
             {[
-              { label: 'Full name', value: 'Albert H. Wiggin' },
-              { label: 'Email address', value: 'awiggin@chase.com' },
+              { label: 'Favorite Pizza Size', value: 'Large' },
+              { label: 'Favorite Pizza Place', value: 'Pollara' },
             ].map((field) => (
               <div key={field.label}>
                 <div className="text-sm text-gray-500">{field.label}</div>
@@ -199,8 +205,15 @@ function InviteScreen(props) {
               </div>
             ))}
           </div>
-          <div className="mt-6 rounded-lg bg-cyan-500 px-3 py-2 text-center text-sm font-semibold text-white">
-            Invite person
+          <div
+            className="mt-6 cursor-pointer rounded-lg bg-option-1 px-3 py-2 text-center text-sm font-semibold text-white"
+            onClick={ toClipboard }
+          >
+            { copying ? (
+              <span>Copied!</span>
+            ) : (
+              <span>Share Pizza Accountant</span>
+            ) }
           </div>
         </div>
       </MotionAppScreenBody>
@@ -209,11 +222,23 @@ function InviteScreen(props) {
 }
 
 function StocksScreen(props) {
+  function Logo(props) {
+    return (
+        <svg viewBox="0 0 40 40" aria-hidden="true" {...props}>
+          <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"
+          />
+        </svg>
+    )
+  }
+
   return (
     <AppScreen className="w-full">
       <MotionAppScreenHeader {...(props.animated ? headerAnimation : {})}>
-        <AppScreen.Title>Stocks</AppScreen.Title>
-        <AppScreen.Subtitle>March 9, 2022</AppScreen.Subtitle>
+        <AppScreen.Title>Pizzerias</AppScreen.Title>
+        <AppScreen.Subtitle>August 11, 2023</AppScreen.Subtitle>
       </MotionAppScreenHeader>
       <MotionAppScreenBody
         {...(props.animated ? { ...bodyAnimation, custom: props.custom } : {})}
@@ -221,85 +246,93 @@ function StocksScreen(props) {
         <div className="divide-y divide-gray-100">
           {[
             {
-              name: 'Laravel',
-              price: '4,098.01',
               change: '+4.98%',
-              color: '#F9322C',
-              logo: LaravelLogo,
+              className: 'rotate-12',
+              color: '#e64001',
+              logo: Logo,
+              name: 'Little Star',
+              price: '32.01',
             },
             {
-              name: 'Tuple',
-              price: '5,451.10',
-              change: '-3.38%',
-              color: '#5A67D8',
-              logo: TupleLogo,
-            },
-            {
-              name: 'Transistor',
-              price: '4,098.41',
+              className: '-rotate-6',
+              name: 'Escape from New York',
+              price: '45.41',
               change: '+6.25%',
-              color: '#2A5B94',
-              logo: TransistorLogo,
+              color: '#efe3df',
+              logo: Logo,
             },
             {
-              name: 'Diageo',
-              price: '250.65',
+              className: '-rotate-90',
+              name: 'Pizzahacker',
+              price: '27.65',
               change: '+1.25%',
-              color: '#3320A7',
-              logo: DiageoLogo,
+              color: '#2a6b41',
+              logo: Logo,
             },
             {
-              name: 'StaticKit',
-              price: '250.65',
+              className: 'rotate-45',
+              name: 'All Good Pizza',
+              price: '20.65',
               change: '-3.38%',
-              color: '#2A3034',
-              logo: StaticKitLogo,
+              color: '#e64001',
+              logo: Logo,
             },
             {
-              name: 'Statamic',
-              price: '5,040.85',
+              className: 'rotate-180',
+              name: 'Long Bridge Pizza',
+              price: '28.85',
               change: '-3.11%',
-              color: '#0EA5E9',
-              logo: StatamicLogo,
+              color: '#fd9d04',
+              logo: Logo,
             },
             {
-              name: 'Mirage',
-              price: '140.44',
-              change: '+9.09%',
-              color: '#16A34A',
-              logo: MirageLogo,
-            },
-            {
-              name: 'Reversable',
-              price: '550.60',
+              className: '-rotate-180',
+              name: 'Gioia Pizzeria',
+              price: '30.60',
               change: '-1.25%',
-              color: '#8D8D8D',
-              logo: ReversableLogo,
+              color: '#2a6b41',
+              logo: Logo,
             },
-          ].map((stock) => (
-            <div key={stock.name} className="flex items-center gap-4 px-4 py-3">
+            {
+              className: '-rotate-45',
+              name: 'Pizza Express',
+              price: '23.44',
+              change: '+9.09%',
+              color: '#efe3df',
+              logo: Logo,
+            },
+            {
+              className: 'rotate-45',
+              name: 'Square Pie Guys',
+              price: '51.10',
+              change: '-3.38%',
+              color: '#fd9d04',
+              logo: Logo,
+            },
+          ].map((pizzeria) => (
+            <div key={pizzeria.name} className="flex items-center gap-4 px-4 py-3">
               <div
                 className="flex-none rounded-full"
-                style={{ backgroundColor: stock.color }}
+                style={{ backgroundColor: pizzeria.color }}
               >
-                <stock.logo className="h-10 w-10" />
+                <pizzeria.logo className={ `h-10 w-10 ${pizzeria.className}` } />
               </div>
               <div className="flex-auto text-sm text-gray-900">
-                {stock.name}
+                {pizzeria.name}
               </div>
               <div className="flex-none text-right">
                 <div className="text-sm font-medium text-gray-900">
-                  {stock.price}
+                  {pizzeria.price}
                 </div>
                 <div
                   className={clsx(
                     'text-xs leading-5',
-                    stock.change.startsWith('+')
-                      ? 'text-cyan-500'
+                      pizzeria.change.startsWith('+')
+                      ? 'text-option-1'
                       : 'text-gray-500',
                   )}
                 >
-                  {stock.change}
+                  {pizzeria.change}
                 </div>
               </div>
             </div>
@@ -314,9 +347,9 @@ function InvestScreen(props) {
   return (
     <AppScreen className="w-full">
       <MotionAppScreenHeader {...(props.animated ? headerAnimation : {})}>
-        <AppScreen.Title>Buy $LA</AppScreen.Title>
+        <AppScreen.Title>Buy $PZA</AppScreen.Title>
         <AppScreen.Subtitle>
-          <span className="text-white">$34.28</span> per share
+          <span className="text-white">$4.28</span> per slice
         </AppScreen.Subtitle>
       </MotionAppScreenHeader>
       <MotionAppScreenBody
@@ -325,16 +358,16 @@ function InvestScreen(props) {
         <div className="px-4 py-6">
           <div className="space-y-4">
             {[
-              { label: 'Number of shares', value: '100' },
+              { label: 'Number of Slices', value: '8' },
               {
                 label: 'Current market price',
                 value: (
                   <div className="flex">
-                    $34.28
+                    $34.24
                     <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
                       <path
                         d="M17 15V7H9M17 7 7 17"
-                        stroke="#06B6D4"
+                        stroke="#e64001"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -343,7 +376,7 @@ function InvestScreen(props) {
                   </div>
                 ),
               },
-              { label: 'Estimated cost', value: '$3,428.00' },
+              { label: 'Estimated cost', value: '$42.00' },
             ].map((item) => (
               <div
                 key={item.label}
@@ -355,8 +388,8 @@ function InvestScreen(props) {
                 </div>
               </div>
             ))}
-            <div className="rounded-lg bg-cyan-500 px-3 py-2 text-center text-sm font-semibold text-white">
-              Buy shares
+            <div className="rounded-lg bg-option-1 px-3 py-2 text-center text-sm font-semibold text-white">
+              Buy Pizza
             </div>
           </div>
         </div>
@@ -428,7 +461,7 @@ function FeaturesDesktop() {
       </Tab.List>
       <div className="relative col-span-6">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <CircleBackground color="#ff496c" className="animate-spin-slower" />
+          <CircleBackground color="#e64001" className="animate-spin-slower" />
         </div>
         <PhoneFrame className="z-10 mx-auto w-full max-w-[366px]">
           <Tab.Panels as={Fragment}>
@@ -505,14 +538,14 @@ function FeaturesMobile() {
             <div className="relative transform overflow-hidden rounded-2xl bg-gray-800 px-5 py-6">
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <CircleBackground
-                  color="#13B5C8"
+                  color="#fd9d04"
                   className={featureIndex % 2 === 1 ? 'rotate-180' : undefined}
                 />
               </div>
               <PhoneFrame className="relative mx-auto w-full max-w-[366px]">
                 <feature.screen />
               </PhoneFrame>
-              <div className="absolute inset-x-0 bottom-0 bg-gray-800/95 p-6 backdrop-blur sm:p-10">
+              <div className="flex flex-col items-center absolute inset-x-0 bottom-0 bg-gray-800/95 p-6 backdrop-blur sm:p-10">
                 <feature.icon className="h-8 w-8" />
                 <h3 className="mt-6 text-sm font-semibold text-white sm:text-lg">
                   {feature.name}

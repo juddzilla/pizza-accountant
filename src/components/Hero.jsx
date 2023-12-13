@@ -3,7 +3,6 @@ import Image from 'next/image'
 import clsx from 'clsx'
 
 import { AppDemo } from '@/components/AppDemo'
-import { AppStoreLink } from '@/components/AppStoreLink'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { PhoneFrame } from '@/components/PhoneFrame'
@@ -111,7 +110,6 @@ export function Hero() {
               Which opportunity cycle maximizes your returns for your shareholders?  Our algorithm, in conjunction with your minimal input, will suggest the optimal path directly to your success.
             </p>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
-              <AppStoreLink />
               <Button
                 href="#"
                 variant="outline"

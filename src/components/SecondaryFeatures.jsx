@@ -1,6 +1,6 @@
-import { useId } from 'react'
+import { useId } from 'react';
 
-import { Container } from '@/components/Container'
+import { Container } from '@/components/Container';
 
 const features = [
   {
@@ -39,7 +39,7 @@ const features = [
       "What does that even mean these days? no really, it's a long word, and too many vowels gives me the dizzies.",
     icon: DeviceChartIcon,
   },
-]
+];
 
 function DeviceArrowIcon(props) {
   return (

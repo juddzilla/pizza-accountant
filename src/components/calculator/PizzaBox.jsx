@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid';
 
 export default ({ currency, index, option, unit, update }, results) => {
-  console.log('res', results);
   let [values, setValues] = useState(option);
+
+  let classList = 'p-4 shadow-2xl rounded-lg';
   let ranking = 0;
 
   const resultIndex = results.ranking.findIndex(result => parseInt(result.pizza, 10) === values.id)
@@ -11,6 +12,8 @@ export default ({ currency, index, option, unit, update }, results) => {
   if (resultIndex !== -1) {
     ranking = resultIndex + 1;
   }
+
+  classList += ranking === 1 ? ' bg-option-1' : ' bg-gray-50';
 
   const parseNumber = (str) => {
     if (isNaN(str) || !str || !str.trim().length) {
@@ -87,7 +90,7 @@ export default ({ currency, index, option, unit, update }, results) => {
             <select
                 id="shape-select"
                 name="shapes"
-                className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-md border-gray-300 focus:border-neutral-800 focus:ring-neutral-800"
                 defaultValue='in'
                 onChange={ ({ target }) => onShapeChange(target.value) }
             >
@@ -127,14 +130,6 @@ export default ({ currency, index, option, unit, update }, results) => {
     )
   }
 
-  let classList = 'p-4 shadow-2xl';
-
-  if (ranking === 1) {
-    classList += ' bg-black';
-  } else {
-    classList += ' bg-gray-50';
-  }
-
   function Ranking() {
     if (results.ranking.length === 1) {
       return null;
@@ -145,14 +140,14 @@ export default ({ currency, index, option, unit, update }, results) => {
       return null;
     }
 
-    let rankClassList = 'sm:w-64 p-4 sm:text-sm';
-
+    let rankClassList = 'relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:w-64 sm:p-6'
     if (resultIndex === 0) {
-      rankClassList += ' text-white';
+      rankClassList += ' ';
+    } else {
+      rankClassList += ' sm:w-64 sm:text-sm'
     }
 
     let optionText = 'Best Option';
-
 
     if (resultIndex === 1) {
       optionText = 'Next Best Option'
@@ -184,13 +179,12 @@ export default ({ currency, index, option, unit, update }, results) => {
             Total { unit }<sup>2</sup>: { rank.area.toFixed(2) }
           </div>
         </div>
-        <div className=''>
-          {/*<sup className='inline-block'>{ currency.symbol }</sup>*/}
+        <div className='text-center'>
           <span className='inline-block'>{ currency.symbol }{ rank.per.toFixed(3) }</span>
           <span className='inline-block mx-1'>&#8725;</span>
           <sub>{ unit }</sub>
           <sup className='inline-block mr-1.5'>2</sup>
-          is  which is
+          is which is
           { Object.hasOwn(rank.comparison, 'next') &&
               <>
                 <span className='inline-block mx-1'>
@@ -231,7 +225,8 @@ export default ({ currency, index, option, unit, update }, results) => {
   };
 
   return (
-      <div className={ classList }>
+    <>
+      <div className={ `${classList} ${ ranking ? 'mb-4' : '' } ` }>
         <div className='flex flex-col overflow-hidden sm:w-64 h-64 rounded p-4 shadow-lg shadow-gray-900/5 bg-white'>
           <div className={ styles.row }>
             <span className='w-20 mr-2'>
@@ -267,8 +262,6 @@ export default ({ currency, index, option, unit, update }, results) => {
             <>
               <div className={ styles.row }>
                 <span className={ styles.columnLabel }>
-                  {/*<ArrowLongLeftIcon className='absolute' width='32' length='32' />*/}
-                  {/*<ArrowLongRightIcon className='absolute' width='32' length='32' />*/}
                   Width
                 </span>
                 <div className={ styles.inputContainer }>
@@ -318,10 +311,10 @@ export default ({ currency, index, option, unit, update }, results) => {
               <input
                   type="text"
                   className={ styles.input }
-                  placeholder="0"
+                  placeholder="0.00"
                   value={ values.cost }
                   onChange={({ target }) => updateCost(target.value)}
-                  aria-describedby="pizza-width"
+                  aria-describedby="pizza-cost"
               />
               <div className={ styles.unitContainer }>
                   <span className={ styles.unit }>
@@ -331,7 +324,15 @@ export default ({ currency, index, option, unit, update }, results) => {
             </div>
           </div>
         </div>
-        { Ranking() }
+
       </div>
+      {
+        !!ranking &&
+        <div className={ classList }>
+          { Ranking() }
+        </div>
+      }
+    </>
   )
+
 }

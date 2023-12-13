@@ -6,15 +6,15 @@ export default function(value, update)  {
   const units = ['in', 'cm'];
 
   return (
-      <div>
-        <div className="sm:hidden flex justify-center mb-4">
+      <div className="mb-4">
+        <div className="sm:hidden flex justify-center">
           <label htmlFor="tabs" className="sr-only">
             Unit
           </label>
           <select
               id="unit-select"
               name="units"
-              className="block w-64 md:w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+              className="block w-64 md:w-full rounded-md border-gray-300 focus:border-neutral-800 focus:ring-neutral-800"
               defaultValue={ value }
               onChange={ ({ target }) => update(target.value) }
           >
@@ -34,8 +34,8 @@ export default function(value, update)  {
                 <button
                     key={ unit }
                     className={classNames(
-                        value === unit ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-500 hover:text-gray-700',
-                        'rounded-md p-1.5 text-sm font-medium w-32'
+                        value === unit ? 'bg-neutral-800 text-white border-neutral-800' : 'bg-gray-50 border-gray-50 text-gray-500 hover:text-gray-700',
+                        'rounded-md p-1.5 text-sm font-medium w-32 border'
                     )}
                     onClick={ () => update(unit) }
                     title={ unit }
