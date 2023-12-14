@@ -117,10 +117,10 @@ export function Header() {
                 </>
               )}
             </Popover>
-            <Button href="/login" variant="outline" className="hidden lg:block">
+            <Button href="/calculator" variant="outline" className="hidden lg:block">
               Get Started
             </Button>
-            <Button href="#" className="hidden lg:block">
+            <Button href="/calculator" className="hidden lg:block">
               Download Free
             </Button>
           </div>

@@ -113,12 +113,20 @@ export default () => {
                     id="pricing-title"
                     className="text-3xl font-medium tracking-tight text-gray-900"
                 >
-                  Pizza is round, pricing is flat. Well, it's round, but flat also.
+                  Happiness Calculator
                 </h2>
               </div>
               <div className='mx-auto max-w-2xl text-center'>
                 <p className="mt-2 text-lg text-gray-600">
-                  Whether you’re one person trying to get 2 pizzas, or two people trying to get 1, Pizza Accountant will guide you in a direction.
+                  Pizza Accountant is under a fiduciary duty to act in your best interests.
+                  With some basic information, we calculate the pizza with the best
+                  <sup className='ml-2 inline-block'>{ currency.symbol }</sup>
+                  <span className='inline-block mx-1'>&#8725;</span>
+                  <sub>{ unit }</sub>
+                  <sup className='inline-block mr-1.5'>2</sup>
+                </p>
+                <p className="mt-2 text-md text-gray-500">
+                  Is what we would say if we were actual accountants, but we still feel the same.
                 </p>
               </div>
             </div>

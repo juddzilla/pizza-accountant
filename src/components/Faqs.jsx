@@ -69,16 +69,6 @@ export function Faqs() {
           >
             Frequently asked questions
           </h2>
-          <p className="mt-2 text-lg text-gray-600">
-            If you have anything else you want to ask,{' '}
-            <a
-              href="mailto:info@example.com"
-              className="text-gray-900 underline"
-            >
-              reach out to us
-            </a>
-            .
-          </p>
         </div>
         <ul
           role="list"
