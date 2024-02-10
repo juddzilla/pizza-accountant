@@ -1,4 +1,4 @@
-export default function(value, update)  {
+export default function Units(value, update)  {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }

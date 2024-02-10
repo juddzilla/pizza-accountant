@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid';
 
-export default ({ currency, index, option, unit, update }, results) => {
+export default function Pizzabox({ currency, index, option, unit, update }, results) {
   let [values, setValues] = useState(option);
 
   let classList = 'p-4 shadow-2xl rounded-lg';
@@ -184,13 +183,13 @@ export default ({ currency, index, option, unit, update }, results) => {
           <span className='inline-block mx-1'>&#8725;</span>
           <sub>{ unit }</sub>
           <sup className='inline-block mr-1.5'>2</sup>
-          is which is
+          which is
           { Object.hasOwn(rank.comparison, 'next') &&
               <>
                 <span className='inline-block mx-1'>
                   { rank.comparison.next.toFixed(0) }% &lt;
                 </span>
-                the { comparators[0] }
+                the <strong className='text-xs'>{ comparators[0] }</strong>
               </>
           }
 
@@ -205,7 +204,7 @@ export default ({ currency, index, option, unit, update }, results) => {
                 <span className='inline-block mx-1'>
                   { rank.comparison.previous.toFixed(0) }% &gt;
                 </span>
-                the { comparators[1] }
+                the <strong className='text-xs'>{ comparators[1] }</strong>
               </>
           }
         </div>

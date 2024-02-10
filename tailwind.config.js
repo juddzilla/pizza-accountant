@@ -1,8 +1,9 @@
-const formsPlugin = require('@tailwindcss/forms')
-const headlessuiPlugin = require('@headlessui/tailwindcss')
+const formsPlugin = require('@tailwindcss/forms');
+const headlessuiPlugin = require('@headlessui/tailwindcss');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  mode: 'jit',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     fontSize: {

@@ -11,7 +11,7 @@ import { currencies } from '@/components/calculator/Currencies';
 
 const initialCurrency = currencies[0];
 
-export default () => {
+export default function Calculator() {
   const pizza = (x, i) => ({
     area: 0,
     cost: 0,
@@ -57,10 +57,8 @@ export default () => {
           }
           return 0;
         });
-    console.log('ranking', sortedRanking);
 
-    const ranking = sortedRanking.map((r, i, a) => {
-      console.log(1, r, i, a);
+    const ranking = sortedRanking.map((r, i, a) => {      
       if (a.length === 1) {
         return [];
       }

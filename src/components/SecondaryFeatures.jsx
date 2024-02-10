@@ -199,7 +199,7 @@ export function SecondaryFeatures() {
             A better time than now exists not in the present.
           </h2>
           <p className="mt-2 text-lg text-gray-600">
-            Don't make the mistake of taking too long to decide and now the pizza place is gonna close soon, or the delivery time has exponentially increased, or you decide you're just gonna eat whatever is around.  You know what's a-round? Pizza is a round food.
+            Don&apos;t make the mistake of taking too long to decide and now the pizza place is gonna close soon, or the delivery time has exponentially increased, or you decide you&apos;re just gonna eat whatever is around.  You know what&apos;s a-round? Pizza is a round food.
           </p>
         </div>
         <ul

@@ -32,7 +32,7 @@ const plans = [
     featured: false,
     price: { Monthly: 'Zero', Annually: 'Nada' },
     description:
-      "You're like family. Family who we keep at a distance.  So like regular family, but only transactionally. So like regular family.",
+      "If you've got what it takes, we'll take what you got.",      
     button: {
       label: "Let's get it!",
       href: '/calculator',
@@ -51,7 +51,7 @@ const plans = [
     featured: true,
     price: { Monthly: 'Nothing Ever', Annually: 'Free' },
     description:
-      "If you've got what it takes, we'll take what you got",
+    "You're like family. Family who we keep at a distance.  So like regular family, but only transactionally. So like regular family.",
     button: {
       label: 'Royalty',
       href: '/calculator',
@@ -206,10 +206,10 @@ export function Pricing() {
             id="pricing-title"
             className="text-3xl font-medium tracking-tight text-gray-900"
           >
-            Pizza is round, pricing is flat. Well, it's round, but flat also.
+            Pizza is round, pricing is flat. But I suppose pizza is flat also.
           </h2>
           <p className="mt-2 text-lg text-gray-600">
-            Whether you’re one person trying to get 2 pizzas, or two people trying to get 1, Pizza Accountant will guide you in a direction.
+            Whether you&apos;re one person trying to get 2 pizzas, or two people trying to get 1, Pizza Accountant will guide you in a direction.
           </p>
         </div>
 

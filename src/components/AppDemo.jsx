@@ -48,8 +48,6 @@ function Chart({
     path += `${index === 0 ? 'M' : 'L'} ${x.toFixed(4)} ${y.toFixed(4)}`
   }
 
-  console.log('path', path);
-
   return (
     <svg
       ref={svgRef}

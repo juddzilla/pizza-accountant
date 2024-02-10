@@ -185,7 +185,7 @@ function InviteScreen(props) {
       <MotionAppScreenHeader {...(props.animated ? headerAnimation : {})}>
         <AppScreen.Title>Pizza is meant to share</AppScreen.Title>
         <AppScreen.Subtitle>
-          Sometimes. Buy an XL or larger pizza, and it's shareable!
+          Sometimes. Buy an XL or larger pizza, and it&apos;s shareable!
         </AppScreen.Subtitle>
       </MotionAppScreenHeader>
       <MotionAppScreenBody
@@ -596,7 +596,7 @@ export function PrimaryFeatures() {
             360 degrees of satisfaction. Get your slice of the pie.
           </h2>
           <p className="mt-2 text-lg text-gray-400">
-            Would you trust your accountant with helping you choose a pizza? Not just any accountant, you wouldn't.
+            Would you trust your accountant with helping you choose a pizza? Not just any accountant, you wouldn&apos;t.
           </p>
           <p className="mt-2 text-lg text-gray-400">
             Pizza Accountant, you would.

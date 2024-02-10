@@ -13,7 +13,7 @@ export function CallToAction() {
       <Container className="relative">
         <div className="mx-auto max-w-md sm:text-center">
           <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">
-            C'mon just do it
+            C&apos;mon just do it
           </h2>
           <p className="mt-4 text-lg text-gray-300">
             5

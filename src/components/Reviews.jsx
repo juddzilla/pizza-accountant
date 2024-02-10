@@ -261,7 +261,7 @@ export function Reviews() {
           Come full circle with Pizza Accountant
         </h2>
         <p className="mt-2 text-lg text-gray-600 sm:text-center">
-          Thousands upon thousands uopn dozens of grains fo flour can't all be wrong. Can they?
+          Thousands upon thousands uopn dozens of grains fo flour can&apos;t all be wrong. Can they?
         </p>
         <ReviewGrid />
       </Container>

@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
@@ -1084,7 +1084,7 @@ function classNames(...classes) {
 }
 
 
-export default function(value, update) {
+export default function Currencies(value, update) {
   function onChange({ nativeEvent, target }) {
     const code = target.value;
     const text = nativeEvent.target[target.selectedIndex].text;
