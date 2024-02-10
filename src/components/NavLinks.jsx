@@ -14,6 +14,9 @@ export function NavLinks() {
     ['Pricing', '/#pricing'],
     ['FAQs', '/#faqs'],
     ['Calculator', '/calculator'],
+    ['Privacy', '/privacy'],
+    ['Terms and Conditions', '/terms'],
+    ['Contact', '/contact'],
   ].map(([label, href], index) => (
     <Link
       key={label}

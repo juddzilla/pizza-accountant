@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Button } from '@/components/Button';
 import { Container } from '@/components/Container';
-import { TextField } from '@/components/Fields';
 import { Logo } from '@/components/Logo';
 import { NavLinks } from '@/components/NavLinks';
 import qrCode from '@/images/qr-code.png';
@@ -57,7 +55,7 @@ export function Footer() {
         </div>
         <div className="flex flex-col items-center border-t border-gray-200 pb-12 pt-8 md:flex-row-reverse md:justify-between md:pt-6">
           <p className="mt-6 text-sm text-gray-500 md:mt-0">
-            &copy; Copyright {new Date().getFullYear()}. All rights reserved.
+            &copy; Copyright {new Date().getFullYear()}. All rights reserved. Judd Hendrix.
           </p>
         </div>
       </Container>
